@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class CandyMachine {
+
+  public static void main(String[] args) {
+   System.out.println("---Welcome to Candy Machine");
+   
+   // Creating dispenser objects:
+   productDispenser Candy = new productDispenser(0.50, 12);
+   productDispenser Chips = new ProductDispenser(0.65, 12);
+   productSispenser Gum = new ProductDispenser(0.45, 12);
+   productDispenser Cookies = new productDispenser(0.85, 12);
+   
+   // Creating cash register objects:
+   cashRegister CR = new cashRegister();
+   
+         // For selection of item
+   int select = 0;
+   do {
+      select = getIntInput("\n to select an item enter\n" + "1 for candy \n" + "2 for chips\n" + "3 for Gum\n" + "4 for Cookies\n" + "9 to exit\n");
+       switch (select){
+       case 1:
+           Purchase(Candy, CR);
+           break;
+       case 2:
+           Purchase(Chips, CR);
+           break;
+       case 3:
+           Purchase(Gum, CR);
+           break;
+       case 4:
+           Puschase(Cookies, CR);
+           break;
+       case 9:
+           break;
+       default;
+           System.out.println("Invalid selection");
+       }
+     } while (select != 9);
+   }
+  
+  // Method to execute a purchase:
+  public static void purchase(productDispenserproduct , CashRegister Cashreg){
+     Scanner input = new scanner(system.in);
+     if (product.getProQty()>0){
+         double pmt = 0;
+         // Collection of Coin to purchase product.
+         do{
+           System.out.print("Please Deposit" + (product.getProdCost()* 100 - pmt)+ "Cent.");
+           pmt += input.nextDouble();
+         } while (pmt < product.getProdCost()* 100);
+         product.SetProdQty(1);
+         Cashreg.setCashOnHand(product.getProdCost());
+         System.out.println("Collect your item at the button and enjoy.");
+  }
+}
